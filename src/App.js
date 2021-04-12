@@ -1,27 +1,17 @@
 import { connect } from 'react-redux';
-import { setStep, increment, decrement } from './actions';
+import * as ActionCreators from './actions';
 
 function App (props) {
   const { step, count, dispatch } = props;
 
   const decrement = () => {
-    const action = increment();
-    dispatch(action);
+    dispatch(ActionCreators.decrement());
   };
-
   const increment = () => {
-    const action = decrement();
-    dispatch(action);
+    dispatch(ActionCreators.increment());
   };
-
-  const onChange = event => {
-    // const action = {
-    //   type: ACTION_TYPES.SET_STEP,
-    //   newStep: Number(event.target.value),
-    // };
-    const value = Number(event.target.value);
-    const action = setStep(value);
-    dispatch(action);
+  const onChange = ({ target: { value } }) => {
+    dispatch(ActionCreators.setStep(Number(value)));
   };
 
   return (

@@ -9,7 +9,9 @@ function App (props) {
     decrementAction,
     setStepAction,
   } = props;
+
   const onChange = ({ target: { value } }) => setStepAction(Number(value));
+  
   return (
     <div>
       <h1>Current counter value: {count}</h1>
@@ -22,13 +24,10 @@ function App (props) {
 
 const mapStateToProps = ({ count, step }) => ({ count, step });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    incrementAction: () => dispatch(CounterActionCreators.increment()),
-    decrementAction: () => dispatch(CounterActionCreators.decrement()),
-    setStepAction: newValue =>
-      dispatch(CounterActionCreators.setStep(newValue)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  incrementAction: () => dispatch(CounterActionCreators.increment()),
+  decrementAction: () => dispatch(CounterActionCreators.decrement()),
+  setStepAction: newValue => dispatch(CounterActionCreators.setStep(newValue)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

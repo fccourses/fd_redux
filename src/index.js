@@ -26,5 +26,5 @@ ReactDOM.render(
     <Provider store={store} /> - read store
     connect(mStP, mDtP)() - HOC. subscribe component to store
     mapStateToProps - func, что именно из store взять
-   
+    mapDispatchToProps - func, которая передает func, которые dispatch экшены в пропсы
 */

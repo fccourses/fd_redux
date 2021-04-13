@@ -15,14 +15,16 @@ ReactDOM.render(
 );
 
 /* 
+
   REDUX:
     store - хранилище. js object
-    reducer - pure func; (state,action) => state
+    reducer - pure func; (state,action) => newState
     dispatch - function которая отправляет action в reducer
     action - events. { type: string, }
     
   REACT-REDUX:
-    connect - HOC. subscribe component to store
+    <Provider store={store} /> - read store
+    connect(mStP, mDtP)() - HOC. subscribe component to store
     mapStateToProps - func, что именно из store взять
    
 */

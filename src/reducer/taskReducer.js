@@ -46,11 +46,10 @@ function reducer (state = initialState, action) {
         ...values,
       };
       const newTasks = [...tasks];
-      newTasks[findIndex] = updatedTask;
-
+      newTasks.splice(findIndex, 1, updatedTask);
       return {
         ...state,
-        task: newTasks,
+        tasks: newTasks,
       };
     }
     default:

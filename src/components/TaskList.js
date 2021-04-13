@@ -24,8 +24,8 @@ const TaskList = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  tasks: state.tasks,
+const mapStateToProps = ({ task: { tasks } }) => ({
+  tasks,
 });
 
 const mapDispatchToProps = dispatch => ({

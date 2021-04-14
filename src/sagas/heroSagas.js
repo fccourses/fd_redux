@@ -15,3 +15,15 @@ export function * createHero (action) {
     yield put(HeroActionsCreator.createHeroError(error));
   }
 }
+
+export function * getHeroes (action) {
+  try {
+    const {
+      data: { data: heroes },
+    } = yield API.getHeroes(action.payload);
+    console.log('saga', heroes);
+    yield put(HeroActionsCreator.getHeroSuccess({ heroes }));
+  } catch (error) {
+    yield put(HeroActionsCreator.getHeroError({ error }));
+  }
+}

@@ -1,20 +1,38 @@
-import React from 'react';
-import Counter from './components/Counter';
-import HeroForm from './components/HeroForm';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
-import HeroList from './components/HeroList';
+import React, { Suspense, lazy } from 'react';
 
-const App = () => {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+
+import Home from './pages/Home';
+import Task from './pages/Task';
+import CounterPage from './pages/Counter';
+
+const App = props => {
   return (
     <div>
-      <Counter />
+      <Router>
+        <ul>
+          <li>
+            <NavLink to='/'>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to='/task'>Task</NavLink>
+          </li>
+          <li>
+            <NavLink to='/counter'>Counter</NavLink>
+          </li>
+        </ul>
 
-      <TaskForm />
-      <TaskList />
-
-      <HeroForm />
-      <HeroList />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/task' component={Task} />
+          <Route path='/counter' component={CounterPage} />
+        </Switch>
+      </Router>
     </div>
   );
 };

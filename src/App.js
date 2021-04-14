@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from 'react';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,9 +6,10 @@ import {
   NavLink,
 } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Task from './pages/Task';
-import CounterPage from './pages/Counter';
+// import Home from './pages/Home';
+const Home = lazy(() => import('./pages/Home'));
+const Task = lazy(() => import('./pages/Task'));
+const CounterPage = lazy(() => import('./pages/Counter'));
 
 const App = props => {
   return (
@@ -26,12 +26,14 @@ const App = props => {
             <NavLink to='/counter'>Counter</NavLink>
           </li>
         </ul>
-
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/task' component={Task} />
-          <Route path='/counter' component={CounterPage} />
-        </Switch>
+        
+        <Suspense fallback={'App is Loadig....'}>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/task' component={Task} />
+            <Route path='/counter' component={CounterPage} />
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   );
